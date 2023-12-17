@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.srm.nisumChallenge.dto.request;
+package com.srm.nisumChallenge.dto.response;
 
 import java.sql.Timestamp;
 

@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.srm.nisumChallenge.dto.entities.LogUserEntity;
 import com.srm.nisumChallenge.dto.entities.UserEntity;
-import com.srm.nisumChallenge.dto.request.OnSuccessUserResgister;
 import com.srm.nisumChallenge.dto.request.UserRequest;
+import com.srm.nisumChallenge.dto.response.OnSuccessUserResgister;
 import com.srm.nisumChallenge.repository.UserRepository;
 import com.srm.nisumChallenge.utils.AESEncryptionDecryptionUtil;
 

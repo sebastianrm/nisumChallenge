@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.srm.nisumChallenge.dto.entities.LogUserEntity;
-import com.srm.nisumChallenge.dto.request.OnSuccessUserResgister;
+import com.srm.nisumChallenge.dto.response.OnSuccessUserResgister;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -32,17 +32,7 @@ import jakarta.persistence.Table;
 @Table(name = "log_user", schema = "usersdb")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 @JsonSubTypes({ @Type(value = OnSuccessUserResgister.class), @Type(value = LogUserEntity.class) })
-
-//@JsonTypeInfo(
-//		  use = JsonTypeInfo.Id.NAME, 
-//		  include = JsonTypeInfo.As.PROPERTY, 
-//		  property = "type")
-//		@JsonSubTypes({ 
-//		  @Type(value = OnSuccessUserResgister.class, name = "car"), 
-//		  @Type(value = LogUserEntity.class, name = "truck") 
-//		})
 public abstract class ParentUserLog {
 
 	@Id

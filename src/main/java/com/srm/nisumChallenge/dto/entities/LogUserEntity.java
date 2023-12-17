@@ -3,7 +3,7 @@ package com.srm.nisumChallenge.dto.entities;
 import java.sql.Timestamp;
 
 import com.srm.nisumChallenge.dto.ParentUserLog;
-import com.srm.nisumChallenge.dto.request.OnSuccessUserResgister;
+import com.srm.nisumChallenge.dto.response.OnSuccessUserResgister;
 
 import jakarta.persistence.Entity;
 
