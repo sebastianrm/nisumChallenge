@@ -29,9 +29,9 @@
 
 1.- `git clone git@github.com:sebastianrm/nisumChallenge.git`
 
-2.- `git checkout feature/registerUser`
+2.- `cd NisumChallenge`
 
-3.- `cd NisumChallenge`
+3.- `git checkout release/0.1.1`
 
 4.- `mvn spring-boot:run` 
 
@@ -39,9 +39,33 @@ or:
 
 4.1- `mvn install -DskipTests`
 
-4.2- `java -jar target/nisumChallenge-0.1.0-SNAPSHOT.jar`
+4.2- `java -jar target/nisumChallenge-0.1.1-SNAPSHOT.jar`
 
 
+##### endPoint
+
+Method Post
+
+
+http://localhost:8080/api/v1/users/add
+
+Ejemplo body:
+
+
+`
+{
+  "name": "string",
+  "email": "aaaaaaa@dominio.cl",
+  "password": "aaaaa@dominio.cl",
+  "phones": [
+    {
+      "number": "string",
+      "citycode": "string",
+      "countrycode": "string"
+    }
+  ]
+}
+`
 #### Base de datos
 
 Esta se crea atraves del diagrama de clasess
