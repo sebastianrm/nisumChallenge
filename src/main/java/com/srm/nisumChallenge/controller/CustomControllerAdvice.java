@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import com.srm.nisumChallenge.Exceptions.CustomDataConstraintException;
+import com.srm.nisumChallenge.Exceptions.CustomNoValidPasswordException;
 import com.srm.nisumChallenge.dto.response.ErrorResponse;
 
 /**
@@ -48,7 +50,35 @@ public class CustomControllerAdvice {
 			errors.put(fieldName, errorMessage);
 		});
 
-		return new ResponseEntity<>(new ErrorResponse("Argument Not Valid"), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(new ErrorResponse("Not Valid Argument",errors), HttpStatus.BAD_REQUEST);
 
+	}
+	
+	/**
+	 * 
+	 * @param e
+	 * @param request
+	 * @return 409 - CONFLICT
+	 */
+	@ExceptionHandler(value = { CustomDataConstraintException.class })
+	protected ResponseEntity<ErrorResponse> handleCustomDataConstraintException(CustomDataConstraintException e,
+			WebRequest request) {
+		
+		logger.error(e);
+		
+		return new ResponseEntity<>(new ErrorResponse(e.getMessage()), HttpStatus.CONFLICT);
+		
+	}
+	
+	
+	
+	@ExceptionHandler(value = { CustomNoValidPasswordException.class })
+	protected ResponseEntity<ErrorResponse> handleCustomNoValidPasswordException(CustomNoValidPasswordException e,
+			WebRequest request) {
+		
+		logger.error(e);
+		
+		return new ResponseEntity<>(new ErrorResponse("El correo ya registrado."), HttpStatus.CONFLICT);
+		
 	}
 }

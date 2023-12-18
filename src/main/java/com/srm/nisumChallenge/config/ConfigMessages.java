@@ -22,15 +22,15 @@ public class ConfigMessages {
     MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setDefaultEncoding("UTF-8");
-        messageSource.addBasenames("classpath:validator-messages");
+        messageSource.setBasenames("classpath:validator-messages","classpath:error-messages");
         
         return messageSource;
     }
 
-    @Bean
-    LocalValidatorFactoryBean getValidator() {
-        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-        bean.setValidationMessageSource(messageSource());
-        return bean;
-    }
+//    @Bean
+//    LocalValidatorFactoryBean getValidator() {
+//        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+//        bean.setValidationMessageSource(messageSource());
+//        return bean;
+//    }
 }

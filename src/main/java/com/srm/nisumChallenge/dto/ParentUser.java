@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 /**
@@ -29,7 +30,7 @@ import jakarta.validation.constraints.Size;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "users", schema = "usersdb", uniqueConstraints = { @UniqueConstraint(columnNames = "email") })
+@Table(name = "USERS", schema = "usersdb", uniqueConstraints = { @UniqueConstraint(columnNames = "email") })
 public abstract class ParentUser {
 
 	@Id
@@ -37,10 +38,12 @@ public abstract class ParentUser {
 	@JsonIgnore
 	private String id;
 	
-	@Schema(description = "User mail", example = "juan@rodriguez.com")
-	@Size(min = 17, max = 19, message = "&{size.email} '${validatedValue}' ")
+	@Schema(description = "User mail", example = "juan@dominio.com")
+	@Size(min = 17, max = 19, message = "{size.email}'${validatedValue}' ")
+	@Pattern(regexp = "^[a-zA-Z]{7}@dominio.cl" ,message = "{pattern.email}")
 	@NotBlank(message = "{notblank.email}")
 	@Email(message = "{notvalid.email}")
+	@Column(unique=true)
 	protected String email;
 
 	@Schema(description = "User Name", example = "Juan Rodriguez")
@@ -119,8 +122,8 @@ public abstract class ParentUser {
 		this.id = id;
 	}
 
-	public abstract UserRequest getUserRequest();
+	public abstract UserRequest factoryUserRequest();
 
-	public abstract UserEntity getUserEntity();
+	public abstract UserEntity factoryUserEntity();
 
 }

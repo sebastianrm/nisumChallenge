@@ -29,10 +29,9 @@ import jakarta.persistence.Table;
  */
 
 @Entity
-@Table(name = "log_user", schema = "usersdb")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
 @JsonSubTypes({ @Type(value = OnSuccessUserResgister.class), @Type(value = LogUserEntity.class) })
+@Table(name = "log_user", schema = "usersdb")
 public abstract class ParentUserLog {
 
 	@Id

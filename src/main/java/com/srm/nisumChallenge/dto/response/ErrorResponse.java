@@ -1,5 +1,7 @@
 package com.srm.nisumChallenge.dto.response;
 
+import java.util.Map;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
@@ -16,11 +18,25 @@ public class ErrorResponse {
 	@Schema(description = "on Error messaje")
 	private String message;
 	
+	@Schema(description = "on Error messaje")
+	private Map<String, String> errors;
 	
 	public ErrorResponse(String message) {
 		super();
 		this.message = message;
 	}
+
+	/**
+	 * 
+	 * @param message
+	 * @param errors
+	 */
+	public ErrorResponse(String message, Map<String, String> errors) {
+		super();
+		this.message = message;
+		this.errors = errors;
+	}
+
 
 	public ErrorResponse() {
 		super();
@@ -33,6 +49,14 @@ public class ErrorResponse {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Map<String, String> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(Map<String, String> errors) {
+		this.errors = errors;
 	}
 
 }

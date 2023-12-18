@@ -65,7 +65,7 @@ public class UserEntity extends ParentUser {
 
 
 	@Override
-	public UserRequest getUserRequest() {
+	public UserRequest factoryUserRequest() {
 
 		UserRequest userRequest = new UserRequest(email, name, password, isActive);
 
@@ -79,7 +79,7 @@ public class UserEntity extends ParentUser {
 	}
 
 	@Override
-	public UserEntity getUserEntity() {
+	public UserEntity factoryUserEntity() {
 		return this;
 	}
 

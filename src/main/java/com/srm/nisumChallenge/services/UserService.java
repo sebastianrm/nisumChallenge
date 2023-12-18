@@ -3,12 +3,12 @@ package com.srm.nisumChallenge.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.srm.nisumChallenge.Exceptions.CustomDataConstraintException;
 import com.srm.nisumChallenge.dto.entities.LogUserEntity;
 import com.srm.nisumChallenge.dto.entities.UserEntity;
 import com.srm.nisumChallenge.dto.request.UserRequest;
 import com.srm.nisumChallenge.dto.response.OnSuccessUserResgister;
 import com.srm.nisumChallenge.repository.UserRepository;
-import com.srm.nisumChallenge.utils.AESEncryptionDecryptionUtil;
 
 /**
  * Nisum Challenge
@@ -23,9 +23,6 @@ import com.srm.nisumChallenge.utils.AESEncryptionDecryptionUtil;
 public class UserService {
 
 	@Autowired
-	AESEncryptionDecryptionUtil AesEncryptionDecryptionService;
-
-	@Autowired
 	UserRepository userRepository;
 
 	@Autowired
@@ -37,30 +34,33 @@ public class UserService {
 	 * @param userRequest
 	 * @return OnsuccesUserRegister || Exception
 	 */
-	public OnSuccessUserResgister registerUser(UserRequest userRequest) {
+	public OnSuccessUserResgister registerUser(UserRequest userRequest) throws CustomDataConstraintException {
 
-		userRequest = encryptPassword(userRequest);
+		/**
+		 * El susario Existe?
+		 */
+		UserEntity UserEntity = castUserRequestToUserEntity(userRequest);
 
-		UserEntity saveUserEntity = saveUserEntity(castUserRequestToUserEntity(userRequest));
+		if (userEntityExist(UserEntity)) {
+			throw new CustomDataConstraintException("Usuario ya existe.",null,null);
+		}
+
+		UserEntity saveUserEntity = saveUserEntity(UserEntity);
 
 		LogUserEntity logUserEntity = logUserService.registrerUserLog(saveUserEntity);
 
-		
 		return logUserEntity.factorygetOnSuccessUserResgister();
 
 	}
 
 	/**
-	 * Encryt password
-	 * 
-	 * @param userRequest
-	 * @return
+	 * @param userEntity
 	 */
-	private UserRequest encryptPassword(UserRequest userRequest) {
+	private boolean userEntityExist(UserEntity userEntity) {
 
-		userRequest.setPassword(AesEncryptionDecryptionService.encrypt(userRequest.getPassword()));
-
-		return userRequest;
+		return !userRepository.findByEmail(userEntity.getEmail()).isEmpty();
+			
+		
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class UserService {
 	 */
 	private UserEntity castUserRequestToUserEntity(UserRequest userRequest) {
 
-		return userRequest.getUserEntity();
+		return userRequest.factoryUserEntity();
 	}
 
 }

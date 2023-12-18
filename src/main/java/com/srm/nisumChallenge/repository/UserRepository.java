@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.srm.nisumChallenge.dto.ParentUser;
+import java.util.List;
+
 
 /**
  * Nisum Challenge
@@ -13,5 +15,11 @@ import com.srm.nisumChallenge.dto.ParentUser;
  */
 @Repository
 public interface UserRepository extends JpaRepository<ParentUser,String>{
+
+	/**
+	 * @param email
+	 */	
+	List<ParentUser> findByEmail(String email);
+	
 
 }
