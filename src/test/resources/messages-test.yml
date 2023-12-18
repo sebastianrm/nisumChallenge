@@ -1,0 +1,9 @@
+notblank:
+  name: Name is mandatory
+  email: Email is mandatory
+  password: password is mandatory
+  number: Number is mandatory
+  citycode: City code is mandatory
+  contrycode: Contry code is mandatory
+notvalid:
+  email: mandatory email to be a email
