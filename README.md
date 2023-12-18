@@ -29,7 +29,7 @@
 
 1.- `git clone git@github.com:sebastianrm/nisumChallenge.git`
 
-2.- `git checkout feature/registerUser`
+2.- `git checkout release/0.1.1`
 
 3.- `cd NisumChallenge`
 
