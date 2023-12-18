@@ -28,10 +28,17 @@
 #### Instrucciones de ejecucion:
 
 1.- `git clone git@github.com:sebastianrm/nisumChallenge.git`
+
 2.- `git checkout feature/registerUser`
+
 3.- `cd NisumChallenge`
-4.- `mvn spring-boot:run` or:
+
+4.- `mvn spring-boot:run` 
+
+or:
+
 4.1- `mvn install -DskipTests`
+
 4.2- `java -jar target/nisumChallenge-0.1.0-SNAPSHOT.jar`
 
 
