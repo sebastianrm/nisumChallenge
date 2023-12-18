@@ -85,3 +85,4 @@ nb-configuration.xml
 
 ### LOGS ###
 **/logs
+**/test-logs
