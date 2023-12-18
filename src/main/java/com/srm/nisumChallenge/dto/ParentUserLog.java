@@ -3,8 +3,6 @@ package com.srm.nisumChallenge.dto;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -48,17 +46,16 @@ public abstract class ParentUserLog {
 	protected String userId;
 
 	@Schema(description = "Created data time")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	protected Timestamp created;
 
-	@Schema(description = "Modifid data time")
-//	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonInclude(Include.NON_NULL)
+	@Schema(description = "Modified data time")
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	protected Timestamp modified;
 
 	@Schema(description = "Last login")
 	@Column(name = "last_login")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	protected Timestamp lastLogin;
 
 	@Schema(description = "Tokken")
@@ -101,6 +98,7 @@ public abstract class ParentUserLog {
 	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
+
 
 	public Timestamp getModified() {
 		return modified;
@@ -150,6 +148,8 @@ public abstract class ParentUserLog {
 		this.isActive = isActive;
 	}
 
+	
+	
 	public abstract LogUserEntity factoryGetLogUserEntity();
 	
 	public abstract OnSuccessUserResgister factorygetOnSuccessUserResgister();

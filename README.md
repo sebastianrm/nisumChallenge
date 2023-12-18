@@ -25,9 +25,18 @@
 - Validator
 - OpenAI 3.0, swagger
 
+
 #### Base de datos
 
+Esta se crea atraves del diagrama de clasess
+```mermaid
+erDiagram
+    USER ||--o{ USER_PHONES : have
+    PHONE ||--o{ USER_PHONES : have
 
+    USER_LOG ||--o{ USER_LOG_PHONES : have
+    PHONE_LOG ||--o{ USER_LOG_PHONES : have
+```
 
 ### Flujo de la aplicacion
 ```mermaid
@@ -120,3 +129,9 @@ classDiagram
 - feature:
 		- /configTecnologies
 		- /registerUser
+
+		
+#### SWAGGER
+
+  URL:
+  http://localhost:8080/swagger-ui/index.html#/
