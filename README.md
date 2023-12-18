@@ -44,27 +44,27 @@ flowchart TD
     H -->|Onsucces| I[OnsuccessMessageResponce]
 ```
 
-  El EndPoint expuesto con metodo Post recibe en su payload un usuraio. Si este usuario cumple con las validaciones del Payload, encripta el password
-  Y Este RequestPayload pasa a clases de servicios
+    El EndPoint expuesto con metodo Post recibe en su payload un usuraio. Si este usuario cumple con las validaciones del Payload, encripta el password
+    Y Este RequestPayload pasa a clases de servicios
 
 
-  Se verifica si el mail existe, si ya existe se lansa excepcion, en caso contrario, Registra el nuevo usuario.
+    Se verifica si el mail existe, si ya existe se lansa excepcion, en caso contrario, Registra el nuevo usuario.
  
   
-  Inserta en una tabla de log el insert del nuevo usuarios.
+    Inserta en una tabla de log el insert del nuevo usuarios.
 
 #### Patrones de diseño
 
 Patron Factory:
 
-como clase padre para los objentos DTO json utilizados por la API y dto entidades de la base de datos. Entoces por ejemplo:
+    como clase padre para los objentos DTO json utilizados por la API y dto entidades de la base de datos. Entoces por ejemplo:
 
-se recive en el payloads un objeto json, este objeto json es persistido en la base de datos y en caso de exito se responce un objeto json son datos del objeto insertados.
+    se recive en el payloads un objeto json, este objeto json es persistido en la base de datos y en caso de exito se responce un objeto json son datos del objeto insertados.
 
-para este trabajo se tienen las clases ParentUser, UserRequest y UserEntity
+    para este trabajo se tienen las clases ParentUser, UserRequest y UserEntity
 
-Para el log del ususario y la respuesta al cliente:
-ParentUserLog, OnSuccessUserResgister, LogUserEntity
+    Para el log del ususario y la respuesta al cliente:
+    ParentUserLog, OnSuccessUserResgister, LogUserEntity
 
 ##### Diagrama de clases:
 
@@ -72,7 +72,7 @@ ParentUserLog, OnSuccessUserResgister, LogUserEntity
 classDiagram
     ParentUser <|-- UserRequest
     ParentUser <|-- UserEntity
-    ParentUser : +String id
+    ParentUser : +UUID id
     ParentUser : +String email
     ParentUser : +String name
     ParentUser : +String password
@@ -86,8 +86,8 @@ classDiagram
 
     ParentUserLog <|-- OnSuccessUserResgister
     ParentUserLog <|-- LogUserEntity
-    ParentUserLog : +String logId
-    ParentUserLog : +String userId
+    ParentUserLog : +UUID logId
+    ParentUserLog : +UUID userId
     ParentUserLog : +Timestamp created
     ParentUserLog : +Timestamp modified
     ParentUserLog : +Timestamp lastLogin
@@ -103,7 +103,7 @@ classDiagram
 
 #### Validaciones y mensajes.
 
-Las validaciones y mensajes de los DTO json y entidades de base dedatos fueron extrenalizadas a los archivos:
+    Las validaciones y mensajes de los DTO json y entidades de base dedatos fueron extrenalizadas a los archivos:
 
 - validator-messages.properties
 - patterns.properties
@@ -112,7 +112,7 @@ Las validaciones y mensajes de los DTO json y entidades de base dedatos fueron e
 
 #### GitFlow
 
-Se utilizo Gitfloy y se crearon las ramas:
+    Se utilizo Gitfloy y se crearon las ramas:
 
 - master
 - develop

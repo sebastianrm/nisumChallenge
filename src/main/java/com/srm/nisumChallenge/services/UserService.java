@@ -9,6 +9,7 @@ import com.srm.nisumChallenge.dto.entities.UserEntity;
 import com.srm.nisumChallenge.dto.request.UserRequest;
 import com.srm.nisumChallenge.dto.response.OnSuccessUserResgister;
 import com.srm.nisumChallenge.repository.UserRepository;
+import com.srm.nisumChallenge.utils.MessagesErrorUtil;
 
 /**
  * Nisum Challenge
@@ -27,6 +28,9 @@ public class UserService {
 
 	@Autowired
 	LogUserService logUserService;
+	
+	@Autowired
+	MessagesErrorUtil messagesErrorUtil;
 
 	/**
 	 * save new user From userRequest
@@ -42,7 +46,7 @@ public class UserService {
 		UserEntity UserEntity = castUserRequestToUserEntity(userRequest);
 
 		if (userEntityExist(UserEntity)) {
-			throw new CustomDataConstraintException("Usuario ya existe.",null,null);
+			throw new CustomDataConstraintException(messagesErrorUtil.getCORREO_EXISTE(),null,null);
 		}
 
 		UserEntity saveUserEntity = saveUserEntity(UserEntity);
